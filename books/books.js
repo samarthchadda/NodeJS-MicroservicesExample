@@ -3,6 +3,10 @@ const express = require('express');
 //instance of express application
 const app = express();
 
+const bodyParser = require('body-parser');  //to save data from request
+
+app.use(bodyParser.json());
+
 //load mongoose
 const mongoose = require('mongoose');
 //connect
@@ -20,7 +24,9 @@ app.get('/',(req, res, next)=>{
 
 //'Create Book' functionality
 app.post('/book',(req,res,next)=>{
-    
+    res.send("Testing Our Book Route")
+    console.log(req.body);   //printing JSON data send by post request
+
 })
 
 app.listen(3000,()=>{
