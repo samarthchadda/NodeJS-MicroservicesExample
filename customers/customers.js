@@ -20,7 +20,7 @@ mongoose.connect('mongodb+srv://samarth:kKYQlKy8FB4TvaDH@cluster0.v8m8b.mongodb.
 require('./CustomerModel');
 const Customer = mongoose.model("Customer");
                                             
-
+//create new Customer
 app.post('/customer', (req,res,next)=>{
 
     var newCustomer = {
