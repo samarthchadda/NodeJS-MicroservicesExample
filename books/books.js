@@ -18,6 +18,11 @@ app.get('/',(req, res, next)=>{
     res.send("This is the books service!");
 })
 
+//'Create Book' functionality
+app.post('/book',(req,res,next)=>{
+    
+})
+
 app.listen(3000,()=>{
     console.log("Up and running! -- This is our Books service");
 });
