@@ -18,7 +18,7 @@ mongoose.model("Book",{
     },
     publisher:{
         type:String,
-        require:false
+        require:true
     }
 
 });

@@ -9,7 +9,11 @@ app.use(bodyParser.json());
 
 //load mongoose
 const mongoose = require('mongoose');
-//connect
+
+require('./BookModel');
+const Book = mongoose.model("Book");
+
+//connect to database
 mongoose.connect('mongodb+srv://samarth:kKYQlKy8FB4TvaDH@cluster0.v8m8b.mongodb.net/BooksService?retryWrites=true&w=majority', { useUnifiedTopology: true })
                                             .then(res=>{
                                                 console.log("connected to Database!!");
@@ -24,8 +28,26 @@ app.get('/',(req, res, next)=>{
 
 //'Create Book' functionality
 app.post('/book',(req,res,next)=>{
-    res.send("Testing Our Book Route")
+   
     console.log(req.body);   //printing JSON data send by post request
+
+    //saving book in our database
+    var newBook = {
+        title:req.body.title,
+        author:req.body.author,
+        noOfPages:req.body.noOfPages,
+        publisher:req.body.publisher        
+    };
+
+    //model instance
+        //creating a new book with data from POST request
+    var book = new Book(newBook);
+
+    book.save().then(()=>{
+        console.log("New Book Created!");
+    }).catch(err=>console.log(err));
+
+    res.send("Book Created with success");
 
 })
 
