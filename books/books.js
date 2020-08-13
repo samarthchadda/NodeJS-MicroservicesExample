@@ -51,6 +51,37 @@ app.post('/book',(req,res,next)=>{
 
 })
 
+
+//To Get all Books
+app.get('/books',(req,res,next)=>{
+
+        //this will return all the books in collection
+    Book.find().then((books)=>{
+        // console.log(books);
+        res.json(books);
+    })
+    .catch(err=>console.log(err));
+
+})
+
+
+//To get Particular Book 
+app.get('/book/:id',(req,res,next)=>{
+
+    Book.findById(req.params.id).then((book)=>{
+
+        if(book)            //book is present, so we return its dataa
+        {
+            res.json(book);
+        }else{
+            res.sendStatus(404);
+        }
+    })
+    .catch(err=>console.log(err));
+
+})
+
+
 app.listen(3000,()=>{
     console.log("Up and running! -- This is our Books service");
 });
